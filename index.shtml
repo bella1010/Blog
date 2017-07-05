@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>中电港UI-2016</title>
+    <meta charset="UTF-8"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet"/>
+    <style>
+        .tbl-list{ width:100%; display:none;text-align: center }
+        .tbl-list th, .tbl-list td{ border:1px solid #fff;  }
+        .tbl-list th{ font-weight:normal; height:30px; padding: 5px 10px; background:#f5f5f5; text-align: center}
+        .tbl-list td{ height:25px;background-color: #f8f8f8;padding: 5px 10px; }
+        .tbl-list .hover td{ background:#fcf6e1; }
+        .tab .bd{ padding:10px 0; }
+        .tab li{ background:#f5f5f5; float:left; padding:7px 20px; margin-right:5px; cursor:pointer; }
+        .tab li.curr{ background:#398dee; position:relative; top:1px; z-index:2;color: #fff; }
+        .tab .hd{ border-bottom:1px solid #398dee; }
+    </style>
+</head>
+<body style="margin:20px; position: relative">
+<h3 style="padding-bottom: 20px;">Web 组件</h3>
+
+<div id="tab" class="tab">
+    <div class="hd clearfix">
+        <ul>
+        </ul>
+    </div>
+    <div class="bd">
+    </div>
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="page.js"></script>
+<script>
+    function Map(arry) {
+        this.data = arry;
+        this.put = function (key, value) {
+            this.data[key] = value;
+        };
+        this.get = function (key) {
+            return this.data[key];
+        };
+    }
+
+    var _tbl = $('#pageTable');
+    var _thead = $('thead', _tbl);
+    var _tbody = $('tbody', _tbl);
+    var d = new Map(Authors);
+    var d1 = new Map(Status);
+
+    var _par = location.href.split('?')[1];
+    if (_par == "") {
+        _par = 0;
+    }
+
+
+    var _tab = [];
+    $.each(pageData, function (i, v) {
+        _tab.push('<li>' + v.title + '</li>');
+        //     var _tbl = $('<table class="tbl-list"><thead><tr><th style="text-align: left">Title</th><th style="text-align: left">Url</th><th>Author</th><th>Update</th><th>Redmine</th><th>New</th></tr></thead><tbody></tbody></table>');
+
+        var _tbl = $('<table class="tbl-list"><thead><tr><th style="text-align: left">Title</th><th style="text-align: left">Url</th><th>Update</th></tr></thead><tbody></tbody></table>');
+        var _tr = [];
+        var _url = v.dir + "/";
+        $.each(v.items, function (j, m) {
+            // _tr.push('<tr><td style="text-align: left">' + m.title + '</td><td style="text-align: left"><a class="cblue" target="_blank" href="' + _url + m.url + '"> ' + _url + m.url + '</a></td><td>' + d.get(m.author) + '</td><td>' + m.update + '</td><td>' + m.redmine + '</td><td>' + d1.get(m.isnew) + '</td></tr>');
+            _tr.push('<tr><td style="text-align: left">' + m.title + '</td><td style="text-align: left"><a class="cblue" target="_blank" href="' + _url + m.url + '"> ' + _url + m.url + '</a></td><td>' + m.update + '</td></tr>');
+        });
+        $('tbody', _tbl).html(_tr.join(''));
+        $('.bd', $('#tab')).append(_tbl);
+    });
+
+    $('#tab ul').html(_tab.join(''));
+    $('li:first', $('#tab ul')).addClass('curr');
+    $('.tbl-list:first', $('#tab .bd')).show();
+
+    $('li', $('#tab ul')).click(function () {
+        var _this = $(this);
+        _this.addClass('curr').siblings().removeClass('curr');
+        var _idx = _this.index();
+        $('.tbl-list', $('#tab .bd')).eq(_idx).show().siblings().hide();
+    });
+
+    $('#tab li').eq(parseInt(_par)).click();
+    $('.tbl-list tr').hover(function () {
+        $(this).addClass('hover');
+    }, function () {
+        $('.tbl-list tr').removeClass('hover');
+    });
+
+</script>
+</body>
+</html>
