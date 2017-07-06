@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .clearfix {
+            *zoom: 1
+        }
+
+        .clearfix:after,.clearfix:before {
+            display: table;
+            content: "";
+            line-height: 0
+        }
+
+        .clear,.clearfix:after {
+            clear: both
+        }
+       .dltbl dl{
+            padding:5px 0;
+           font-size: 14px;
+        }
+
+         .dltbl dl dt {
+            float: left;
+            width: 20%;
+            padding-right: 10px;
+            text-align: right;
+            color: #666;
+             line-height: 30px;
+
+        }
+        .dltbl dl dd {
+            float: left;
+            position: relative;
+            padding: 0 120px 0 10px;
+            color: #000;
+
+        }
+        .ipt{
+            padding: 5px;
+        }
+       .imgcode, .codebtn {
+           position: absolute;
+           right: 0;
+           top: -2px;
+           width: 100px;
+           height: 30px;
+           line-height: 26px;
+           text-align: center;
+       }
+       .codebtn {
+           border: 1px solid #eee;
+           background: #eee;
+           font-size: 12px;
+           color: #bbb;
+           cursor: no-drop;
+       }
+       .codebtn.dis{
+           border: 1px solid #eee;
+           background: #eee;
+           color: #000;
+           cursor: no-drop;
+       }
+       .codebtn.btnblue{
+           border: 1px solid #3688ec;
+           background: #ffffff;
+           color: #3688ec;
+           cursor: pointer;
+       }
+    </style>
+
+
+</head>
+<body>
+<form  autocomplete="off" >
+    <div class="dltbl">
+        <dl class="clearfix">
+            <dt>验证码</dt>
+            <dd>
+                <input id="Code" name="" type="text" class=" ipt"
+                       onkeyup="value=value.replace(/[/W]/g,'')"
+                       onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^/d]/g,''))">
+                <img src="http://www.cecport.com/ucenter/ulogin/verifyCode.jhtml?t=0.8157630557222206" class="imgcode" />
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>短信验证码</dt>
+            <dd>
+                <input id="autocode" name="number" type="number" class="ipt jsBuyNumber"  placeholder=''
+                       style="IME-MODE: disabled; "
+                       onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                       maxlength="4" size="4"/>
+                <input id="" type="button"  value="获取验证码"  class="codebtn  jscodebtn "   />
+            </dd>
+        </dl>
+    </div>
+</form>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="jstime.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btn").timebutton();
+    });
+</script>
+
+</body>
+</html>
