@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>固定边栏的效果</title>
+    <link href="/assets/css/base.css">
+    <style>
+        *{ padding: 0; margin: 0}
+        .fl{ float: left; padding: 0; margin: 0}
+        .fr{ float: right; padding: 0; margin: 0}
+        .w80{ width: 65% }
+        .w20{ width: 400px;}
+        .divbd{ width: 100%; height: 400px; }
+        .divbd2{ width: 100%; height: 1500px; font-size: 24px; color: #fff; text-align: center ; overflow: hidden}
+        .bgblue{ background: blue}
+        .bgorg{ background: orange}
+        .bgred{ background: red}
+        .bggreen{ background: green}
+        .bgblack{ background: black}
+    </style>
+</head>
+<body >
+<div class="clearfix">
+    <div class="fl w80" >
+        <div class="divbd bgblue"></div>
+        <div class="divbd bgorg"></div>
+        <div class="divbd bgred"></div>
+        <div class="divbd bggreen"></div>
+        <div class="divbd bgblue"></div>
+        <div class="divbd bgorg"></div>
+        <div class="divbd bgred"></div>
+        <div class="divbd bggreen"></div>
+        <div class="divbd bgblue"></div>
+        <div class="divbd bgorg"></div>
+        <div class="divbd bgred"></div>
+        <div class="divbd bggreen"></div>
+        <div class="divbd bgblue">4</div>
+        <div class="divbd bgorg"></div>
+        <div class="divbd bgred"></div>
+        <div class="divbd bggreen"></div>
+        <div class="divbd bgblue">5</div>
+        <div class="divbd bgorg"></div>
+        <div class="divbd bgred"></div>
+        <div class="divbd bggreen"></div>
+        <div class="divbd bgblue"></div>
+        <div class="divbd bgorg"></div>
+        <div class="divbd bgred"></div>
+        <div class="divbd bggreen"></div>
+        <div class="divbd bgblue"></div>
+        <div class="divbd bgorg"></div>
+        <div class="divbd bgred"></div>
+        <div class="divbd bggreen"></div>
+        <div class="divbd bgblue">4</div>
+        <div class="divbd bgorg"></div>
+        <div class="divbd bgred"></div>
+        <div class="divbd bggreen"></div>
+        <div class="divbd bgblue">5</div>
+        <div class="divbd bgorg"></div>
+        <div class="divbd bgred"></div>
+        <div class="divbd bggreen"></div>
+    </div>
+    <div class="fr w20" id="J_BdSide">
+        <div class="divbd2 bgblack" >
+            a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+            b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>b<br>
+            c<br> c<br> c<br> c<br> c<br> c<br>
+        </div>
+    </div>
+</div>
+<script>
+    var $ = function (id) {
+        return document.getElementsById(id);
+    }
+    var addEvent = function (obj,event,fn) {
+        if(obj.addEventListener){
+            obj.addEventListener(event,fn,false);
+        }else if( obj.attachEvent){
+            obj.attachEvent('on'+event,fn);
+        }
+    }
+    var domSider = $('')
+
+</script>
+
+
+
+<!--<script src="http://code.jquery.com/jquery.js"></script>-->
+<!--<script src="/assets/js/jquery.min.js"></script>
+<script>
+
+    var jWindow = $(window);
+    jWindow.scroll(function () {
+
+        var scrollHeight = jWindow.scrollTop();
+        var screenHeight = jWindow.height();
+        var sideHeight = $('#J_BdSide').height();
+        console.log(sideHeight)
+        if(scrollHeight+screenHeight>sideHeight){
+            $('#J_BdSide').css({
+                'position':'fixed',
+                'top':'-(sideHeight-screenHeight)',
+                'right':0
+            })
+        }else {
+            $('#J_BdSide').css({
+                'position':'static'
+            })
+        }
+    });
+    window.onload = function () {
+        jWindow.trigger('scroll');
+    };
+    jWindow.resize(function () {
+
+    })
+
+</script>-->
+
+</body>
+</html>
